@@ -16,6 +16,13 @@ export default function Header() {
     { path: '/contact', label: 'CONTACT' }
   ];
 
+  const loginLinks = [
+    { path: '/farmer-login', label: 'FARMER' },
+    { path: '/laboratory-login', label: 'LAB' },
+    { path: '/consumer-login', label: 'CONSUMER' },
+    { path: '/admin-login', label: 'ADMIN' }
+  ];
+
   const isActive = (path: string) => location.pathname === path;
 
   return (
@@ -54,6 +61,26 @@ export default function Header() {
               </Link>
             ))}
           </nav>
+
+          {/* Login Dropdown */}
+          <div className="hidden lg:flex items-center gap-2">
+            <div className="relative group">
+              <button className="font-heading text-xs uppercase tracking-wide text-secondary/70 hover:text-primary transition-colors px-3 py-2 rounded">
+                LOGIN
+              </button>
+              <div className="absolute right-0 mt-0 w-40 bg-white border-2 border-secondary/20 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                {loginLinks.map((link) => (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className="block px-4 py-3 font-paragraph text-sm text-secondary hover:bg-primary/5 hover:text-primary transition-colors first:rounded-t-md last:rounded-b-md border-b border-secondary/10 last:border-b-0"
+                  >
+                    {link.label} Login
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -96,6 +123,29 @@ export default function Header() {
                     </Link>
                   </motion.div>
                 ))}
+                
+                {/* Mobile Login Section */}
+                <div className="mt-4 pt-4 border-t border-secondary/20">
+                  <p className="font-heading text-xs uppercase tracking-wide text-secondary/70 mb-3">Login</p>
+                  <div className="flex flex-col gap-2">
+                    {loginLinks.map((link, index) => (
+                      <motion.div
+                        key={link.path}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: (navLinks.length + index) * 0.05 }}
+                      >
+                        <Link
+                          to={link.path}
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block py-2 px-3 font-paragraph text-sm text-secondary hover:text-primary hover:bg-primary/5 rounded transition-colors"
+                        >
+                          {link.label} Login
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </motion.nav>
           )}
