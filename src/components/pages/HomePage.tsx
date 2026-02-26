@@ -1,25 +1,21 @@
-// HPI 1.7-V
-import React, { useRef, useState } from 'react';
-import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { Image } from '@/components/ui/image';
-import { 
-  ArrowRight, 
-  Shield, 
-  Users, 
-  FlaskConical, 
-  Leaf, 
-  QrCode, 
-  MapPin, 
-  Sprout, 
-  Factory, 
-  FileCheck, 
-  Smartphone,
-  CheckCircle2,
-  Globe
-} from 'lucide-react';
-import Header from '@/components/Header';
+_// HPI 1.7-V
 import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import { Image } from '@/components/ui/image';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import {
+  ArrowRight,
+  CheckCircle2,
+  Factory,
+  FlaskConical,
+  Globe,
+  Leaf,
+  MapPin,
+  QrCode,
+  Shield
+} from 'lucide-react';
+import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 // --- CANONICAL DATA SOURCES ---
 // Preserving original data structures and content logic
@@ -110,13 +106,13 @@ const Marquee = ({ text, direction = 1 }: { text: string; direction?: number }) 
         transition={{ repeat: Infinity, ease: "linear", duration: 20 }}
       >
         {[...Array(4)].map((_, i) => (
-          <motion.span 
-            key={i} 
+          <motion.span
+            key={i}
             className="mx-6 flex items-center gap-3"
             whileHover={{ scale: 1.05 }}
           >
-            {text} <motion.span 
-              className="w-2 h-2 bg-highlightyellow rounded-full" 
+            {text} <motion.span
+              className="w-2 h-2 bg-highlightyellow rounded-full"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ repeat: Infinity, duration: 2 }}
             />
@@ -169,7 +165,7 @@ export default function HomePage() {
     target: heroRef,
     offset: ["start start", "end start"]
   });
-  
+
   const heroY = useTransform(heroScroll.scrollYProgress, [0, 1], ["0%", "30%"]);
   const heroTextY = useTransform(heroScroll.scrollYProgress, [0, 1], ["0%", "-20%"]);
 
@@ -181,7 +177,7 @@ export default function HomePage() {
       <section ref={heroRef} className="relative w-full min-h-screen pt-16 flex flex-col justify-between overflow-hidden">
         {/* Top Content */}
         <div className="relative z-10 w-full max-w-[120rem] mx-auto px-4 md:px-8 lg:px-12">
-          <motion.div 
+          <motion.div
             style={{ y: heroTextY }}
             className="flex flex-col items-center text-center"
           >
@@ -191,16 +187,16 @@ export default function HomePage() {
               transition={{ duration: 0.6 }}
               className="mb-3 flex items-center gap-2"
             >
-              <motion.div 
-                className="w-1.5 h-1.5 bg-primary rounded-full" 
+              <motion.div
+                className="w-1.5 h-1.5 bg-primary rounded-full"
                 animate={{ scale: [1, 1.3, 1] }}
                 transition={{ repeat: Infinity, duration: 2 }}
               />
               <span className="font-paragraph text-xs md:text-sm uppercase tracking-widest text-secondary font-bold">
                 Ministry of AYUSH Initiative
               </span>
-              <motion.div 
-                className="w-1.5 h-1.5 bg-primary rounded-full" 
+              <motion.div
+                className="w-1.5 h-1.5 bg-primary rounded-full"
                 animate={{ scale: [1, 1.3, 1] }}
                 transition={{ repeat: Infinity, duration: 2, delay: 0.3 }}
               />
@@ -234,15 +230,15 @@ export default function HomePage() {
             </h1>
 
             {/* Navigation Row (Mimicking the inspiration's secondary text row) */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 1 }}
               className="w-full flex flex-wrap justify-between items-center border-t-2 border-secondary mt-6 pt-3 pb-8"
             >
               {['Farmer', 'Processor', 'Laboratory', 'Consumer'].map((item, i) => (
-                <motion.span 
-                  key={i} 
+                <motion.span
+                  key={i}
                   className="font-heading text-sm md:text-lg uppercase text-secondary/60 hover:text-primary transition-colors cursor-default"
                   whileHover={{ scale: 1.05 }}
                 >
@@ -254,14 +250,14 @@ export default function HomePage() {
         </div>
 
         {/* Bottom Visual (Mimicking the abstract shapes) */}
-        <motion.div 
+        <motion.div
           style={{ y: heroY }}
           className="relative w-full h-[40vh] md:h-[50vh] mt-auto"
         >
           {/* Abstract Shapes Masking */}
           <div className="absolute inset-0 flex items-end justify-center px-4">
             <div className="w-full max-w-[110rem] h-full grid grid-cols-3 gap-3 md:gap-4 items-end">
-              <motion.div 
+              <motion.div
                 initial={{ height: 0 }}
                 animate={{ height: "80%" }}
                 transition={{ duration: 1.2, ease: "circOut", delay: 0.4 }}
@@ -273,7 +269,7 @@ export default function HomePage() {
                   className="w-full h-full object-cover opacity-60 mix-blend-overlay"
                 />
               </motion.div>
-              <motion.div 
+              <motion.div
                 initial={{ height: 0 }}
                 animate={{ height: "100%" }}
                 transition={{ duration: 1.2, ease: "circOut", delay: 0.2 }}
@@ -286,7 +282,7 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary to-transparent opacity-40" />
               </motion.div>
-              <motion.div 
+              <motion.div
                 initial={{ height: 0 }}
                 animate={{ height: "70%" }}
                 transition={{ duration: 1.2, ease: "circOut", delay: 0.5 }}
@@ -324,7 +320,7 @@ export default function HomePage() {
               A comprehensive digital platform ensuring <span className="text-primary">transparency</span> and <span className="text-highlightyellow">authenticity</span> across the entire medicinal plant supply chain, from the soil of the farm to the hands of the consumer.
             </p>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -334,7 +330,7 @@ export default function HomePage() {
                 <h4 className="font-heading text-lg uppercase mb-2">For The Government</h4>
                 <p className="font-paragraph text-sm text-secondary/80">Real-time oversight and data-driven policy making for the AYUSH sector.</p>
               </motion.div>
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -357,7 +353,7 @@ export default function HomePage() {
 
         <div className="max-w-[120rem] mx-auto px-4 md:px-8">
           <SectionHeader title="Stakeholder\nPortals" subtitle="Access Your Dashboard" align="left" />
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
             {PORTAL_DATA.map((portal, index) => (
               <Link to={portal.link} key={portal.id} className="group">
@@ -370,7 +366,7 @@ export default function HomePage() {
                 >
                   {/* Hover Reveal Image Background */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500">
-                    <Image 
+                    <Image
                       src="https://static.wixstatic.com/media/153483_7ab6af9d51624960934b19d482d8ceee~mv2.png?originWidth=768&originHeight=384"
                       alt={portal.title}
                       className="w-full h-full object-cover grayscale"
@@ -380,7 +376,7 @@ export default function HomePage() {
                   <div className="relative z-10">
                     <div className="flex justify-between items-start mb-6">
                       <portal.icon className="w-10 h-10 md:w-12 md:h-12 stroke-1" />
-                      <motion.div 
+                      <motion.div
                         className="w-10 h-10 rounded-full border border-current flex items-center justify-center group-hover:bg-current group-hover:text-background transition-colors"
                         whileHover={{ rotate: 45 }}
                       >
@@ -399,8 +395,8 @@ export default function HomePage() {
                     <ul className="grid grid-cols-2 gap-2">
                       {portal.features.map((feature, i) => (
                         <li key={i} className="flex items-center gap-2 text-xs font-heading uppercase tracking-wide opacity-70">
-                          <motion.div 
-                            className="w-1 h-1 bg-current rounded-full" 
+                          <motion.div
+                            className="w-1 h-1 bg-current rounded-full"
                             animate={{ scale: [1, 1.2, 1] }}
                             transition={{ repeat: Infinity, duration: 2, delay: i * 0.2 }}
                           />
@@ -430,7 +426,7 @@ export default function HomePage() {
                   Our integrated platform connects every stakeholder in the Ayurvedic supply chain, ensuring complete transparency through advanced digital tracking.
                 </p>
                 <Link to="/contact">
-                  <motion.button 
+                  <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="px-6 py-3 bg-secondary text-secondary-foreground font-heading text-sm uppercase tracking-wide hover:bg-primary transition-colors duration-300"
@@ -455,9 +451,9 @@ export default function HomePage() {
                   <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
                     <item.icon className="w-24 h-24 text-secondary" />
                   </div>
-                  
+
                   <div className="flex flex-col md:flex-row gap-6 items-start md:items-center mb-6">
-                    <motion.div 
+                    <motion.div
                       className="w-16 h-16 bg-highlightyellow/20 flex items-center justify-center rounded-full text-secondary flex-shrink-0"
                       whileHover={{ scale: 1.1 }}
                     >
@@ -465,12 +461,12 @@ export default function HomePage() {
                     </motion.div>
                     <div>
                       <h3 className="font-heading text-2xl text-secondary uppercase">{item.title}</h3>
-                      <motion.div 
-                        className="h-1 w-16 bg-primary mt-2 group-hover:w-full transition-all duration-500" 
+                      <motion.div
+                        className="h-1 w-16 bg-primary mt-2 group-hover:w-full transition-all duration-500"
                       />
                     </div>
                   </div>
-                  
+
                   <p className="font-paragraph text-base text-secondary/70 mb-6 max-w-2xl">
                     {item.description}
                   </p>
@@ -493,9 +489,9 @@ export default function HomePage() {
             Why Traceability Matters
           </h2>
         </div>
-        
+
         <Marquee text="Trust • Safety • Purity • Ethics •" direction={-1} />
-        
+
         <div className="max-w-[100rem] mx-auto px-4 md:px-8 mt-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {BENEFITS_LIST.map((benefit, index) => (
@@ -525,7 +521,7 @@ export default function HomePage() {
                transition={{ delay: 0.5, duration: 0.5 }}
                className="flex items-center justify-center p-4 bg-highlightyellow text-secondary"
             >
-               <motion.div 
+               <motion.div
                  className="text-center"
                  whileHover={{ scale: 1.05 }}
                >
@@ -552,7 +548,7 @@ export default function HomePage() {
             className="w-full h-full object-cover"
           />
         </div>
-        
+
         <div className="relative z-10 w-full max-w-[100rem] mx-auto px-4 md:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -566,7 +562,7 @@ export default function HomePage() {
             <p className="font-paragraph text-base md:text-lg text-background/80 max-w-3xl mx-auto mb-10">
               Whether you're a farmer, processor, laboratory, or consumer, our platform provides the tools you need to participate in a transparent, trustworthy Ayurvedic supply chain.
             </p>
-            
+
             <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
               <Link to="/contact">
                 <motion.button
