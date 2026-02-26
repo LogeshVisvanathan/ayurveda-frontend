@@ -10,27 +10,30 @@ export default function LaboratoryTestingPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="w-full py-20 bg-secondary">
-        <div className="max-w-[100rem] mx-auto px-8 md:px-16">
+      <section className="w-full py-14 bg-secondary">
+        <div className="max-w-[100rem] mx-auto px-6 md:px-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <div className="inline-block px-6 py-2 bg-secondary-foreground/10 backdrop-blur-sm mb-6">
-              <p className="font-paragraph text-sm text-secondary-foreground uppercase tracking-wider">
+            <motion.div 
+              className="inline-block px-5 py-2 bg-secondary-foreground/10 backdrop-blur-sm mb-4"
+              whileHover={{ scale: 1.05 }}
+            >
+              <p className="font-paragraph text-xs md:text-sm text-secondary-foreground uppercase tracking-wider">
                 For Quality Testing Laboratories
               </p>
-            </div>
-            <h1 className="font-heading text-6xl md:text-8xl text-secondary-foreground uppercase mb-6">
+            </motion.div>
+            <h1 className="font-heading text-4xl md:text-6xl text-secondary-foreground uppercase mb-4">
               LABORATORY
               <br />
               <span className="text-highlightyellow">TESTING</span>
               <br />
               DASHBOARD
             </h1>
-            <p className="font-paragraph text-lg text-secondary-foreground/90 max-w-3xl mx-auto">
+            <p className="font-paragraph text-base md:text-lg text-secondary-foreground/90 max-w-3xl mx-auto">
               Upload test reports, verify quality standards, and certify herb batches with comprehensive analytical documentation.
             </p>
           </motion.div>

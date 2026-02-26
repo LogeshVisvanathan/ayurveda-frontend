@@ -45,26 +45,19 @@ export default function ContactPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="w-full py-20 bg-primary">
-        <div className="max-w-[100rem] mx-auto px-8 md:px-16">
+      <section className="w-full py-14 bg-primary">
+        <div className="max-w-[100rem] mx-auto px-6 md:px-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <div className="inline-block px-6 py-2 bg-primary-foreground/10 backdrop-blur-sm mb-6">
-              <p className="font-paragraph text-sm text-primary-foreground uppercase tracking-wider">
-                Get In Touch
-              </p>
-            </div>
-            <h1 className="font-heading text-6xl md:text-8xl text-primary-foreground uppercase mb-6">
-              CONTACT
-              <br />
-              <span className="text-highlightyellow">US</span>
+            <h1 className="font-heading text-4xl md:text-6xl text-primary-foreground uppercase mb-4">
+              Get In Touch
             </h1>
-            <p className="font-paragraph text-lg text-primary-foreground/90 max-w-3xl mx-auto">
-              Have questions about the Ayurvedic herbal traceability system? We're here to help. Reach out to us for inquiries, support, or feedback.
+            <p className="font-paragraph text-base md:text-lg text-primary-foreground/90 max-w-3xl mx-auto">
+              Have questions about the National Ayurvedic Network? We're here to help. Contact us today.
             </p>
           </motion.div>
         </div>
