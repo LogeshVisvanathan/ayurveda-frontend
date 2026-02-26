@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
 import { Image } from '@/components/ui/image';
-import { Package, Thermometer, Wind, Database, CheckCircle, Link as LinkIcon } from 'lucide-react';
+import { Package, Thermometer, Wind, Database, CheckCircle, Link as LinkIcon, ArrowRight, MapPin } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { Link } from 'react-router-dom';
 
 export default function ProcessingUnitPage() {
   return (
@@ -406,6 +407,111 @@ export default function ProcessingUnitPage() {
                   {benefit.description}
                 </p>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Processing Units Section */}
+      <section className="w-full py-16 bg-background">
+        <div className="max-w-[100rem] mx-auto px-6 md:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-12"
+          >
+            <h2 className="font-heading text-3xl md:text-5xl text-secondary uppercase mb-4">
+              ACTIVE PROCESSING UNITS
+            </h2>
+            <p className="font-paragraph text-base md:text-lg text-secondary/80 max-w-4xl">
+              View detailed information about processing centers and their current operations.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                id: 'processing-1',
+                name: 'Central Processing Unit - Delhi',
+                location: 'Delhi',
+                status: 'In Progress',
+                method: 'Solar Drying',
+                batchId: 'BATCH-2024-001',
+                stage: 'Drying'
+              },
+              {
+                id: 'processing-2',
+                name: 'Himalayan Processing Center - Himachal',
+                location: 'Himachal Pradesh',
+                status: 'Completed',
+                method: 'Shade Drying',
+                batchId: 'BATCH-2024-002',
+                stage: 'Packaging'
+              },
+              {
+                id: 'processing-3',
+                name: 'Kerala Processing Hub - Kochi',
+                location: 'Kerala',
+                status: 'In Progress',
+                method: 'Mechanical Drying',
+                batchId: 'BATCH-2024-003',
+                stage: 'Grinding'
+              }
+            ].map((unit, index) => (
+              <Link to={`/processing-detail/${unit.id}`} key={unit.id} className="group">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  whileHover={{ y: -4 }}
+                  className="bg-background border-2 border-secondary/20 p-6 hover:border-primary transition-all h-full flex flex-col"
+                >
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 className="font-heading text-xl text-secondary uppercase mb-1">
+                        {unit.name}
+                      </h3>
+                      <div className="flex items-center gap-2 text-secondary/70">
+                        <MapPin className="w-4 h-4" />
+                        <span className="font-paragraph text-sm">{unit.location}</span>
+                      </div>
+                    </div>
+                    <motion.div
+                      className="w-8 h-8 rounded-full border border-secondary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                      whileHover={{ rotate: 45 }}
+                    >
+                      <ArrowRight className="w-4 h-4 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+                    </motion.div>
+                  </div>
+
+                  <div className="flex-1">
+                    <p className="font-paragraph text-xs text-secondary/70 uppercase mb-2">Current Status</p>
+                    <div className="mb-4">
+                      <span className={`inline-block px-3 py-1 font-heading text-xs uppercase ${
+                        unit.status === 'Completed' 
+                          ? 'bg-green-100 text-green-700' 
+                          : 'bg-primary/10 text-primary'
+                      }`}>
+                        {unit.status}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-secondary/20 pt-4 space-y-2">
+                    <div className="flex justify-between">
+                      <span className="font-paragraph text-xs text-secondary/70">Method</span>
+                      <span className="font-heading text-sm text-secondary">{unit.method}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="font-paragraph text-xs text-secondary/70">Current Stage</span>
+                      <span className="font-heading text-sm text-secondary">{unit.stage}</span>
+                    </div>
+                  </div>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>

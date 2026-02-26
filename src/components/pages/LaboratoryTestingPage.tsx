@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import { Image } from '@/components/ui/image';
-import { FlaskConical, FileCheck, Microscope, Shield, CheckCircle, XCircle } from 'lucide-react';
+import { FlaskConical, FileCheck, Microscope, Shield, CheckCircle, XCircle, ArrowRight, MapPin } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useAuthStore } from '@/stores/authStore';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
 export default function LaboratoryTestingPage() {
@@ -441,6 +441,108 @@ export default function LaboratoryTestingPage() {
                   {feature.description}
                 </p>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Laboratory Testing Section */}
+      <section className="w-full py-16 bg-background">
+        <div className="max-w-[100rem] mx-auto px-6 md:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-12"
+          >
+            <h2 className="font-heading text-3xl md:text-5xl text-secondary uppercase mb-4">
+              RECENT TEST BATCHES
+            </h2>
+            <p className="font-paragraph text-base md:text-lg text-secondary/80 max-w-4xl">
+              View detailed information about recent laboratory testing and batch approvals.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                id: 'lab-1',
+                name: 'Central Testing Laboratory - Delhi',
+                location: 'Delhi',
+                status: 'Approved',
+                batchId: 'BATCH-2024-001',
+                testDate: '2024-02-20'
+              },
+              {
+                id: 'lab-2',
+                name: 'Himalayan Quality Testing Center - Himachal',
+                location: 'Himachal Pradesh',
+                status: 'Approved',
+                batchId: 'BATCH-2024-002',
+                testDate: '2024-02-17'
+              },
+              {
+                id: 'lab-3',
+                name: 'Kerala Advanced Testing Lab - Kochi',
+                location: 'Kerala',
+                status: 'Pending',
+                batchId: 'BATCH-2024-003',
+                testDate: 'In Progress'
+              }
+            ].map((lab, index) => (
+              <Link to={`/laboratory-detail/${lab.id}`} key={lab.id} className="group">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  whileHover={{ y: -4 }}
+                  className="bg-background border-2 border-secondary/20 p-6 hover:border-primary transition-all h-full flex flex-col"
+                >
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 className="font-heading text-xl text-secondary uppercase mb-1">
+                        {lab.name}
+                      </h3>
+                      <div className="flex items-center gap-2 text-secondary/70">
+                        <MapPin className="w-4 h-4" />
+                        <span className="font-paragraph text-sm">{lab.location}</span>
+                      </div>
+                    </div>
+                    <motion.div
+                      className="w-8 h-8 rounded-full border border-secondary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                      whileHover={{ rotate: 45 }}
+                    >
+                      <ArrowRight className="w-4 h-4 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+                    </motion.div>
+                  </div>
+
+                  <div className="flex-1">
+                    <p className="font-paragraph text-xs text-secondary/70 uppercase mb-2">Test Status</p>
+                    <div className="mb-4">
+                      <span className={`inline-block px-3 py-1 font-heading text-xs uppercase ${
+                        lab.status === 'Approved' 
+                          ? 'bg-green-100 text-green-700' 
+                          : 'bg-primary/10 text-primary'
+                      }`}>
+                        {lab.status}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-secondary/20 pt-4 space-y-2">
+                    <div className="flex justify-between">
+                      <span className="font-paragraph text-xs text-secondary/70">Batch ID</span>
+                      <span className="font-heading text-sm text-secondary">{lab.batchId}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="font-paragraph text-xs text-secondary/70">Test Date</span>
+                      <span className="font-heading text-sm text-secondary">{lab.testDate}</span>
+                    </div>
+                  </div>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>

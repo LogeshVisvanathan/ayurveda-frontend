@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import { Image } from '@/components/ui/image';
-import { MapPin, Wifi, Camera, Database, Leaf, Cloud } from 'lucide-react';
+import { MapPin, Wifi, Camera, Database, Leaf, Cloud, ArrowRight } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useAuthStore } from '@/stores/authStore';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
 export default function FarmerPortalPage() {
@@ -373,6 +373,106 @@ export default function FarmerPortalPage() {
                   {benefit.description}
                 </p>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Farmer Collections Section */}
+      <section className="w-full py-16 bg-background">
+        <div className="max-w-[100rem] mx-auto px-6 md:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-12"
+          >
+            <h2 className="font-heading text-3xl md:text-5xl text-secondary uppercase mb-4">
+              RECENT COLLECTIONS
+            </h2>
+            <p className="font-paragraph text-base md:text-lg text-secondary/80 max-w-4xl">
+              View detailed information about recent herb collections and their supply chain progress.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                id: 'farmer-1',
+                name: 'Rajesh Kumar',
+                location: 'Himachal Pradesh',
+                herbs: ['Ashwagandha', 'Brahmi', 'Tulsi'],
+                harvest: '250 kg',
+                date: '2024-02-15'
+              },
+              {
+                id: 'farmer-2',
+                name: 'Priya Sharma',
+                location: 'Uttarakhand',
+                herbs: ['Jatamansi', 'Sarpagandha', 'Neem'],
+                harvest: '180 kg',
+                date: '2024-02-10'
+              },
+              {
+                id: 'farmer-3',
+                name: 'Vikram Singh',
+                location: 'Kerala',
+                herbs: ['Brahmi', 'Bacopa', 'Gotu Kola'],
+                harvest: '320 kg',
+                date: '2024-02-12'
+              }
+            ].map((farmer, index) => (
+              <Link to={`/farmer-detail/${farmer.id}`} key={farmer.id} className="group">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  whileHover={{ y: -4 }}
+                  className="bg-background border-2 border-secondary/20 p-6 hover:border-primary transition-all h-full flex flex-col"
+                >
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 className="font-heading text-xl text-secondary uppercase mb-1">
+                        {farmer.name}
+                      </h3>
+                      <div className="flex items-center gap-2 text-secondary/70">
+                        <MapPin className="w-4 h-4" />
+                        <span className="font-paragraph text-sm">{farmer.location}</span>
+                      </div>
+                    </div>
+                    <motion.div
+                      className="w-8 h-8 rounded-full border border-secondary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                      whileHover={{ rotate: 45 }}
+                    >
+                      <ArrowRight className="w-4 h-4 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+                    </motion.div>
+                  </div>
+
+                  <div className="flex-1">
+                    <p className="font-paragraph text-xs text-secondary/70 uppercase mb-2">Herbs Collected</p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {farmer.herbs.map((herb, i) => (
+                        <span key={i} className="bg-primary/10 text-primary px-2 py-1 font-paragraph text-xs rounded">
+                          {herb}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="border-t border-secondary/20 pt-4 space-y-2">
+                    <div className="flex justify-between">
+                      <span className="font-paragraph text-xs text-secondary/70">Total Harvest</span>
+                      <span className="font-heading text-sm text-secondary">{farmer.harvest}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="font-paragraph text-xs text-secondary/70">Harvest Date</span>
+                      <span className="font-heading text-sm text-secondary">{farmer.date}</span>
+                    </div>
+                  </div>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>

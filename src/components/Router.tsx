@@ -16,6 +16,10 @@ import ConsumerLoginPage from '@/components/pages/ConsumerLoginPage';
 import ConsumerRegisterPage from '@/components/pages/ConsumerRegisterPage';
 import AdminLoginPage from '@/components/pages/AdminLoginPage';
 import AdminRegisterPage from '@/components/pages/AdminRegisterPage';
+import FarmerDetailPage from '@/components/pages/FarmerDetailPage';
+import ProcessingDetailPage from '@/components/pages/ProcessingDetailPage';
+import LaboratoryDetailPage from '@/components/pages/LaboratoryDetailPage';
+import ConsumerDetailPage from '@/components/pages/ConsumerDetailPage';
 
 // Layout component that includes ScrollToTop
 function Layout() {
@@ -129,6 +133,34 @@ const router = createBrowserRouter([
         element: <AdminRegisterPage />,
         routeMetadata: {
           pageIdentifier: 'admin-register',
+        },
+      },
+      {
+        path: "farmer-detail/:id",
+        element: <FarmerDetailPage />,
+        routeMetadata: {
+          pageIdentifier: 'farmer-detail',
+        },
+      },
+      {
+        path: "processing-detail/:id",
+        element: <ProcessingDetailPage />,
+        routeMetadata: {
+          pageIdentifier: 'processing-detail',
+        },
+      },
+      {
+        path: "laboratory-detail/:id",
+        element: <LaboratoryDetailPage />,
+        routeMetadata: {
+          pageIdentifier: 'laboratory-detail',
+        },
+      },
+      {
+        path: "consumer-detail/:id",
+        element: <ConsumerDetailPage />,
+        routeMetadata: {
+          pageIdentifier: 'consumer-detail',
         },
       },
       {
