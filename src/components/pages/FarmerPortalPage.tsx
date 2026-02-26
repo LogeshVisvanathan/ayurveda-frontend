@@ -3,8 +3,20 @@ import { Image } from '@/components/ui/image';
 import { MapPin, Wifi, Camera, Database, Leaf, Cloud } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { useAuthStore } from '@/stores/authStore';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export default function FarmerPortalPage() {
+  const { isAuthenticated, userRole } = useAuthStore();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Redirect to login if not authenticated or wrong role
+    if (!isAuthenticated || userRole !== 'farmer') {
+      navigate('/farmer-login');
+    }
+  }, [isAuthenticated, userRole, navigate]);
   return (
     <div className="min-h-screen bg-background">
       <Header />

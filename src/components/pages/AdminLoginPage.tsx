@@ -7,9 +7,11 @@ import { Alert } from '@/components/ui/alert';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Eye, EyeOff, AlertCircle, Lock, Shield } from 'lucide-react';
+import { useAuthStore } from '@/stores/authStore';
 
 export default function AdminLoginPage() {
   const navigate = useNavigate();
+  const { login } = useAuthStore();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [twoFactorCode, setTwoFactorCode] = useState('');
@@ -75,8 +77,11 @@ export default function AdminLoginPage() {
       localStorage.setItem('adminEmail', email);
       localStorage.setItem('adminSession', 'true');
 
-      // Redirect to admin dashboard
-      navigate('/admin-dashboard');
+      // Login user
+      login(email, 'admin');
+
+      // Redirect to home
+      navigate('/');
     } catch (err) {
       setError('Two-factor authentication failed. Please try again.');
       setIsLoading(false);
@@ -234,7 +239,16 @@ export default function AdminLoginPage() {
 
             {/* Footer Links */}
             {step === 'credentials' && (
-              <div className="mt-6 pt-6 border-t border-secondary/10 text-center">
+              <div className="mt-6 pt-6 border-t border-secondary/10 text-center space-y-2">
+                <p className="text-sm font-paragraph text-secondary">
+                  Don't have an account?{' '}
+                  <button
+                    onClick={() => navigate('/admin-register')}
+                    className="text-primary hover:underline font-semibold"
+                  >
+                    Register here
+                  </button>
+                </p>
                 <p className="text-xs font-paragraph text-secondary/60">
                   Need help?{' '}
                   <button

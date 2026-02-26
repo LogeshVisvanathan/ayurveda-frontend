@@ -3,8 +3,20 @@ import { Image } from '@/components/ui/image';
 import { FlaskConical, FileCheck, Microscope, Shield, CheckCircle, XCircle } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { useAuthStore } from '@/stores/authStore';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export default function LaboratoryTestingPage() {
+  const { isAuthenticated, userRole } = useAuthStore();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Redirect to login if not authenticated or wrong role
+    if (!isAuthenticated || userRole !== 'lab') {
+      navigate('/laboratory-login');
+    }
+  }, [isAuthenticated, userRole, navigate]);
   return (
     <div className="min-h-screen bg-background">
       <Header />

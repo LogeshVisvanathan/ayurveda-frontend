@@ -7,9 +7,11 @@ import { Alert } from '@/components/ui/alert';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Eye, EyeOff, AlertCircle } from 'lucide-react';
+import { useAuthStore } from '@/stores/authStore';
 
 export default function FarmerLoginPage() {
   const navigate = useNavigate();
+  const { login } = useAuthStore();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -45,6 +47,9 @@ export default function FarmerLoginPage() {
       } else {
         localStorage.removeItem('farmerEmail');
       }
+
+      // Login user
+      login(email, 'farmer');
 
       // Redirect to farmer portal
       navigate('/farmer-portal');
@@ -156,10 +161,10 @@ export default function FarmerLoginPage() {
               <p className="text-sm font-paragraph text-secondary">
                 Don't have an account?{' '}
                 <button
-                  onClick={() => navigate('/farmer-portal')}
+                  onClick={() => navigate('/farmer-register')}
                   className="text-primary hover:underline font-semibold"
                 >
-                  Contact Support
+                  Register here
                 </button>
               </p>
               <p className="text-xs font-paragraph text-secondary/60">

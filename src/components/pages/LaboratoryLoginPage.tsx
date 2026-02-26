@@ -7,9 +7,11 @@ import { Alert } from '@/components/ui/alert';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Eye, EyeOff, AlertCircle } from 'lucide-react';
+import { useAuthStore } from '@/stores/authStore';
 
 export default function LaboratoryLoginPage() {
   const navigate = useNavigate();
+  const { login } = useAuthStore();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -45,6 +47,9 @@ export default function LaboratoryLoginPage() {
       } else {
         localStorage.removeItem('labEmail');
       }
+
+      // Login user
+      login(email, 'lab');
 
       // Redirect to laboratory testing portal
       navigate('/laboratory-testing');
@@ -156,10 +161,10 @@ export default function LaboratoryLoginPage() {
               <p className="text-sm font-paragraph text-secondary">
                 Don't have an account?{' '}
                 <button
-                  onClick={() => navigate('/laboratory-testing')}
+                  onClick={() => navigate('/laboratory-register')}
                   className="text-primary hover:underline font-semibold"
                 >
-                  Contact Support
+                  Register here
                 </button>
               </p>
               <p className="text-xs font-paragraph text-secondary/60">

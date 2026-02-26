@@ -9,9 +9,13 @@ import LaboratoryTestingPage from '@/components/pages/LaboratoryTestingPage';
 import ConsumerPortalPage from '@/components/pages/ConsumerPortalPage';
 import ContactPage from '@/components/pages/ContactPage';
 import FarmerLoginPage from '@/components/pages/FarmerLoginPage';
+import FarmerRegisterPage from '@/components/pages/FarmerRegisterPage';
 import LaboratoryLoginPage from '@/components/pages/LaboratoryLoginPage';
+import LaboratoryRegisterPage from '@/components/pages/LaboratoryRegisterPage';
 import ConsumerLoginPage from '@/components/pages/ConsumerLoginPage';
+import ConsumerRegisterPage from '@/components/pages/ConsumerRegisterPage';
 import AdminLoginPage from '@/components/pages/AdminLoginPage';
+import AdminRegisterPage from '@/components/pages/AdminRegisterPage';
 
 // Layout component that includes ScrollToTop
 function Layout() {
@@ -79,10 +83,24 @@ const router = createBrowserRouter([
         },
       },
       {
+        path: "farmer-register",
+        element: <FarmerRegisterPage />,
+        routeMetadata: {
+          pageIdentifier: 'farmer-register',
+        },
+      },
+      {
         path: "laboratory-login",
         element: <LaboratoryLoginPage />,
         routeMetadata: {
           pageIdentifier: 'laboratory-login',
+        },
+      },
+      {
+        path: "laboratory-register",
+        element: <LaboratoryRegisterPage />,
+        routeMetadata: {
+          pageIdentifier: 'laboratory-register',
         },
       },
       {
@@ -93,10 +111,24 @@ const router = createBrowserRouter([
         },
       },
       {
+        path: "consumer-register",
+        element: <ConsumerRegisterPage />,
+        routeMetadata: {
+          pageIdentifier: 'consumer-register',
+        },
+      },
+      {
         path: "admin-login",
         element: <AdminLoginPage />,
         routeMetadata: {
           pageIdentifier: 'admin-login',
+        },
+      },
+      {
+        path: "admin-register",
+        element: <AdminRegisterPage />,
+        routeMetadata: {
+          pageIdentifier: 'admin-register',
         },
       },
       {
