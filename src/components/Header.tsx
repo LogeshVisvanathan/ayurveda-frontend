@@ -75,7 +75,7 @@ export default function Header() {
                     to={link.path}
                     className="block px-4 py-3 font-paragraph text-sm text-secondary hover:bg-primary/5 hover:text-primary transition-colors first:rounded-t-md last:rounded-b-md border-b border-secondary/10 last:border-b-0"
                   >
-                    {link.label} Login
+                    {link.label}
                   </Link>
                 ))}
               </div>
@@ -140,7 +140,7 @@ export default function Header() {
                           onClick={() => setIsMenuOpen(false)}
                           className="block py-2 px-3 font-paragraph text-sm text-secondary hover:text-primary hover:bg-primary/5 rounded transition-colors"
                         >
-                          {link.label} Login
+                          {link.label}
                         </Link>
                       </motion.div>
                     ))}
