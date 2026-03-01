@@ -41,3 +41,9 @@ docs/*
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+
+node_modules
+dist
+.env
+.vite
