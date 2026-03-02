@@ -19,6 +19,14 @@ function ScrollToTop() {
 }
 
 export default function App() {
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetch("https://ayurveda-backend-asg5.onrender.com/api/health");
+    }, 300000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <BrowserRouter>
       <CustomCursor />
